@@ -3,6 +3,8 @@ import Image from 'next/image'
 import { getHostel } from '@/lib/actions/hostels'
 import { notFound } from 'next/navigation'
 
+export const dynamic = 'force-dynamic'
+
 interface Hostel {
   id: string
   name: string
