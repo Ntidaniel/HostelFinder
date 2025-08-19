@@ -1,3 +1,5 @@
+// src/app/(public)/page.tsx
+export const dynamic = 'force-dynamic'   // 👈 disable static prerender
 
 import HostelCard from '@/components/hostel-card'
 import SearchBar from '@/components/search-bar'
