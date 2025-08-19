@@ -1,10 +1,11 @@
 // src/app/(public)/page.tsx
-export const dynamic = 'force-dynamic'   // 👈 disable static prerender
-
 import HostelCard from '@/components/hostel-card'
 import SearchBar from '@/components/search-bar'
 import PaginationControls from '@/components/pagination-controls'
 import { listHostels } from '@/lib/actions/hostels'
+
+// Configure dynamic rendering for search functionality
+export const revalidate = 0
 
 export default async function Home({
   searchParams,
