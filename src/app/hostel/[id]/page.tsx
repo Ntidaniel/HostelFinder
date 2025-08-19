@@ -26,16 +26,23 @@ export default async function HostelPage({ params }: { params: Promise<{ id: str
       <p className="text-2xl font-semibold">${hostel.price_semester} per semester</p>
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-        {hostel.images.map((img) => (
-          <Image
-            key={img}
-            src={img}
-            alt="Hostel image"
-            width={400}
-            height={300}
-            className="rounded"
-          />
-        ))}
+        {hostel.images.length > 0 ? (
+          hostel.images.map((img) => (
+            <Image
+              key={img}
+              src={img}
+              alt="Hostel image"
+              width={400}
+              height={300}
+              className="rounded"
+              unoptimized
+            />
+          ))
+        ) : (
+          <div className="col-span-full text-center py-8 text-gray-500">
+            No images available
+          </div>
+        )}
       </div>
 
       <article className="prose">{hostel.description}</article>

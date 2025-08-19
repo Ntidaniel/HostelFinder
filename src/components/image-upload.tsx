@@ -20,16 +20,28 @@ export default function ImageUpload({ onUploaded, existing = [] }: Props) {
       for (const file of Array.from(files)) {
         const fileExt = file.name.split('.').pop()
         const fileName = `${crypto.randomUUID()}.${fileExt}`
-        const { error } = await supabase.storage
+        
+        // Upload file
+        const { error: uploadError } = await supabase.storage
           .from('hostel_images')
           .upload(fileName, file)
-        if (error) throw error
-        const {
-          data: { publicUrl },
-        } = supabase.storage.from('hostel_images').getPublicUrl(fileName)
+        if (uploadError) {
+          console.error('Upload error:', uploadError)
+          throw uploadError
+        }
+        
+        // Get public URL
+        const { data: { publicUrl } } = supabase.storage
+          .from('hostel_images')
+          .getPublicUrl(fileName)
+        
+        console.log('Uploaded image URL:', publicUrl)
         newUrls.push(publicUrl)
       }
       onUploaded([...existing, ...newUrls])
+    } catch (error) {
+      console.error('Image upload error:', error)
+      alert('Failed to upload image. Please try again.')
     } finally {
       setUploading(false)
     }
