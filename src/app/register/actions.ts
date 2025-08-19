@@ -1,4 +1,4 @@
-// src/app/(auth)/register/actions.ts
+// src/app/register/actions.ts
 'use server'
 
 import { createClient } from '@/lib/supabase/server'
@@ -13,9 +13,14 @@ export async function register(formData: FormData) {
     password: formData.get('password') as string,
   }
 
-  const { error } = await supabase.auth.signUp(data)
+  const { error, data: authData } = await supabase.auth.signUp(data)
   if (error) {
     redirect(`/register?error=${encodeURIComponent(error.message)}`)
+  }
+
+  // Check if email confirmation is required
+  if (authData.user && !authData.user.email_confirmed_at) {
+    redirect('/register?success=Please check your email to confirm your account before logging in.')
   }
 
   revalidatePath('/', 'layout')
