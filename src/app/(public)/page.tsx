@@ -1,4 +1,4 @@
-import { Suspense } from 'react'
+
 import HostelCard from '@/components/hostel-card'
 import SearchBar from '@/components/search-bar'
 import PaginationControls from '@/components/pagination-controls'

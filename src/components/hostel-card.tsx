@@ -3,10 +3,18 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 
-export default function HostelCard({ hostel }: { hostel: any }) {
+interface Hostel {
+  id: string
+  name: string
+  location: string
+  price_semester: number
+  images: string[]
+}
+
+export default function HostelCard({ hostel }: { hostel: Hostel }) {
   return (
     <Card className="overflow-hidden">
-      {hostel.images?.[0] && (
+      {hostel.images[0] && (
         <Image
           src={hostel.images[0]}
           alt={hostel.name}
