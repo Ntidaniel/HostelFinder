@@ -1,4 +1,4 @@
-// src/app/(auth)/register/page.tsx
+// src/app/register/page.tsx
 import { register } from './actions'
 
 export default function RegisterPage() {

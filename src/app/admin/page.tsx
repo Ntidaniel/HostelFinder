@@ -1,3 +1,4 @@
+// src/app/admin/page.tsx
 import { createClient } from '@/lib/supabase/server'
 import { listHostels } from '@/lib/actions/hostels'
 import Link from 'next/link'

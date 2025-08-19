@@ -1,3 +1,4 @@
+// src/app/admin/new/page.tsx
 'use client'
 import { useState } from 'react'
 import { createHostel } from '@/lib/actions/hostels'
