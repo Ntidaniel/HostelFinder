@@ -1,9 +1,20 @@
+// src/app/(public)/hostel/[id]/page.tsx
 import Image from 'next/image'
 import { getHostel } from '@/lib/actions/hostels'
 import { notFound } from 'next/navigation'
 
-export default async function HostelPage({ params }: { params: { id: string } }) {
-  const hostel = await getHostel(params.id).catch(() => null)
+interface Hostel {
+  id: string
+  name: string
+  location: string
+  price_semester: number
+  description: string
+  images: string[]
+}
+
+export default async function HostelPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params                 // ← await the params
+  const hostel: Hostel | null = await getHostel(id).catch(() => null)
   if (!hostel) notFound()
 
   return (
@@ -13,11 +24,11 @@ export default async function HostelPage({ params }: { params: { id: string } })
       <p className="text-2xl font-semibold">${hostel.price_semester} per semester</p>
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-        {hostel.images.map((img: string) => (
+        {hostel.images.map((img) => (
           <Image
             key={img}
             src={img}
-            alt={`Image`}
+            alt="Hostel image"
             width={400}
             height={300}
             className="rounded"

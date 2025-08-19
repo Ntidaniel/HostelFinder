@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { createHostel } from '@/lib/actions/hostels'
 import { Button } from '@/components/ui/button'
-import { useRouter } from 'next/navigation'
+
 import ImageUpload from '@/components/image-upload'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
