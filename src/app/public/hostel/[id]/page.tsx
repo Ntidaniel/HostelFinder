@@ -1,4 +1,4 @@
-// src/app/(public)/hostel/[id]/page.tsx
+// src/app/public/hostel/[id]/page.tsx
 import Image from 'next/image'
 import { getHostel } from '@/lib/actions/hostels'
 import { notFound } from 'next/navigation'

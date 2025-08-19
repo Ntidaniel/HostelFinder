@@ -1,4 +1,4 @@
-// src/app/(public)/page.tsx
+// src/app/public/page.tsx
 import HostelCard from '@/components/hostel-card'
 import SearchBar from '@/components/search-bar'
 import PaginationControls from '@/components/pagination-controls'
