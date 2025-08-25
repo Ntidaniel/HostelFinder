@@ -1,41 +1,30 @@
 // src/components/hostel-card.tsx
-import Image from 'next/image'
 import Link from 'next/link'
-import { Card, CardContent } from '@/components/ui/card'
 
-interface Hostel {
-  id: string
-  name: string
-  location: string
-  price_semester: number
-  images: string[]
+interface Props {
+  id: number;
+  name: string;
+  location: string;
+  price: number;
+  rating: number;
+  status: 'Active' | 'Pending'; // Update the status type to the union type
 }
 
-export default function HostelCard({ hostel }: { hostel: Hostel }) {
+export default function HostelCard({ id, name, location, price, rating, status }: Props) {
   return (
-    <Card className="overflow-hidden">
-      {hostel.images[0] ? (
-        <Image
-          src={hostel.images[0]}
-          alt={hostel.name}
-          width={400}
-          height={250}
-          className="object-cover w-full h-48"
-          unoptimized
-        />
-      ) : (
-        <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
-          <span className="text-gray-500">No image</span>
-        </div>
-      )}
-      <CardContent className="p-4">
-        <h2 className="text-xl font-semibold">{hostel.name}</h2>
-        <p className="text-sm text-slate-600">{hostel.location}</p>
-        <p className="font-bold">${hostel.price_semester} / semester</p>
-        <Link href={`/hostel/${hostel.id}`} className="text-sm underline">
-          View details →
-        </Link>
-      </CardContent>
-    </Card>
+    <div className="bg-white rounded-lg shadow-lg p-4">
+      <h3 className="text-lg font-semibold text-slate-800">{name}</h3>
+      <p className="text-sm text-slate-600">{location}</p>
+      <p className="text-sm mt-1">
+        Status: <span className="font-medium">{status}</span>
+      </p>
+      <p className="text-primary font-bold mt-2">★ {rating} · ${price}/night</p>
+      <Link
+        href={`/admin/${id}/edit`}
+        className="mt-3 inline-block bg-secondary text-white px-3 py-1 rounded text-sm"
+      >
+        Edit
+      </Link>
+    </div>
   )
 }

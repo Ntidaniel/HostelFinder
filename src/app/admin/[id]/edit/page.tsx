@@ -67,7 +67,7 @@ export default function EditHostelPage() {
         <Input
           name="price"
           type="number"
-          defaultValue={hostel.price_semester}
+          defaultValue={hostel.price_semester.toString()}
           placeholder="Price per semester"
           required
         />
